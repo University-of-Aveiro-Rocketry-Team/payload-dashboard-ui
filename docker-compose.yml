@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  ui:
+    build:
+      context: .
+    container_name: ui
+    ports:
+      - "80:3030"
+    volumes:
+      - .:/ui
+      - /ui/node_modules
+    command: "yarn dev --host"
+    environment:
+      - NODE_ENV=development

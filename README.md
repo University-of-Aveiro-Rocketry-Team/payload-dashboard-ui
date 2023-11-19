@@ -62,7 +62,10 @@ docker-compose down
 ### Ports and URLs
 Here is a list of the services, their ports, and URLs:
 
-1. **React Application**
+1. **React Application (through Docker)**
+   - Port: 80
+   - URL: http://localhost:80  
+2. **React Application (through yarn dev)**
    - Port: 3030
    - URL: http://localhost:3030  
 <br>

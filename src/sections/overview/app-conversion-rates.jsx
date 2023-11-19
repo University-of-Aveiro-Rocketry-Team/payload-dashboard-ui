@@ -8,7 +8,6 @@ import { fNumber } from 'src/utils/format-number';
 
 import Chart, { useChart } from 'src/components/chart';
 
-// ----------------------------------------------------------------------
 
 export default function AppConversionRates({ title, subheader, chart, ...other }) {
   const { colors, series, options } = chart;

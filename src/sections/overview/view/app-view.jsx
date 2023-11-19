@@ -17,6 +17,7 @@ import AppWidgetSummary from '../app-widget-summary';
 
 import { fetchBME680Data } from '../api';
 
+
 export default function AppView() {
   const [sensorData, setSensorData] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -24,13 +25,13 @@ export default function AppView() {
   React.useEffect(() => {
     setIsLoading(true);
     fetchBME680Data()
-    .then((data) => {
-      setSensorData(data);
-      setIsLoading(false);
-    })
-    .catch((error) => {
-      setIsLoading(false);
-    });
+      .then((data) => {
+        setSensorData(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+      });
   }, []);
   
   if (isLoading) {
