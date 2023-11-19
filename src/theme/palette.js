@@ -118,3 +118,24 @@ export function palette() {
     },
   };
 }
+
+export function darkPalette() {
+  return {
+    ...base,
+    mode: 'dark',
+    text: {
+      primary: grey[100],
+      secondary: grey[300],
+      disabled: grey[500],
+    },
+    background: {
+      paper: grey[800],
+      default: grey[900],
+      neutral: grey[700],
+    },
+    action: {
+      ...base.action,
+      active: grey[300],
+    },
+  };
+}
