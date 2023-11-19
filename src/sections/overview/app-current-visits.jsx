@@ -8,7 +8,6 @@ import { fNumber } from 'src/utils/format-number';
 
 import Chart, { useChart } from 'src/components/chart';
 
-// ----------------------------------------------------------------------
 
 const CHART_HEIGHT = 400;
 
@@ -26,7 +25,6 @@ const StyledChart = styled(Chart)(({ theme }) => ({
   },
 }));
 
-// ----------------------------------------------------------------------
 
 export default function AppCurrentVisits({ title, subheader, chart, ...other }) {
   const theme = useTheme();

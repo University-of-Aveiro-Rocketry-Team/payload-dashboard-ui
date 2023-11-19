@@ -12,7 +12,6 @@ import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
 
 import { fDateTime } from 'src/utils/format-time';
 
-// ----------------------------------------------------------------------
 
 export default function AnalyticsOrderTimeline({ title, subheader, list, ...other }) {
   return (
@@ -43,7 +42,6 @@ AnalyticsOrderTimeline.propTypes = {
   title: PropTypes.string,
 };
 
-// ----------------------------------------------------------------------
 
 function OrderItem({ item, lastTimeline }) {
   const { type, title, time } = item;

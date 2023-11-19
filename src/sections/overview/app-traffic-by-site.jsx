@@ -8,7 +8,6 @@ import CardHeader from '@mui/material/CardHeader';
 
 import { fShortenNumber } from 'src/utils/format-number';
 
-// ----------------------------------------------------------------------
 
 export default function AppTrafficBySite({ title, subheader, list, ...other }) {
   return (

@@ -6,7 +6,6 @@ import { styled, useTheme } from '@mui/material/styles';
 
 import Chart, { useChart } from 'src/components/chart';
 
-// ----------------------------------------------------------------------
 
 const CHART_HEIGHT = 400;
 
@@ -24,7 +23,6 @@ const StyledChart = styled(Chart)(({ theme }) => ({
   },
 }));
 
-// ----------------------------------------------------------------------
 
 export default function AppCurrentSubject({ title, subheader, chart, ...other }) {
   const theme = useTheme();
