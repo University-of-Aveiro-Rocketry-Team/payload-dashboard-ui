@@ -2,8 +2,7 @@ version: '3.9'
 
 services:
   ui:
-    build:
-      context: .
+    image: andreclerigo/payload-dashboard-ui:arm64-latest
     container_name: ui
     ports:
       - "80:3030"
