@@ -1,3 +1,7 @@
+[![CodeQL](https://github.com/University-of-Aveiro-Rocketry-Team/payload-dashboard-ui/actions/workflows/codeql.yml/badge.svg)](https://github.com/University-of-Aveiro-Rocketry-Team/payload-dashboard-ui/actions/workflows/codeql.yml)
+[![Docker Build](https://github.com/University-of-Aveiro-Rocketry-Team/payload-dashboard-ui/actions/workflows/docker-image.yml/badge.svg)](https://github.com/University-of-Aveiro-Rocketry-Team/payload-dashboard-ui/actions/workflows/docker-image.yml)
+[![Web Deploy](https://github.com/University-of-Aveiro-Rocketry-Team/payload-dashboard-ui/actions/workflows/raspberrypi.yml/badge.svg)](https://github.com/University-of-Aveiro-Rocketry-Team/payload-dashboard-ui/actions/workflows/raspberrypi.yml)
+
 # payload-dashboard-ui
 
 This is a Dashboard UI project mainly constituted by a React App that fetches data from [payaload-dashboard-api](https://github.com/University-of-Aveiro-Rocketry-Team/payload-dashboard-api). The project can be deployed in development mode or orchestrated by Docker Compose using the provided docker-compose.yml file.  
