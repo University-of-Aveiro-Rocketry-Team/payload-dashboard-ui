@@ -25,7 +25,7 @@ jobs:
           password: ${{ secrets.CLERIGO_RASPBERRY_PI_SSH_PASSWORD }}
           port: ${{ secrets.CLERIGO_RASPBERRY_PI_PORT }}
           script: |
-            cd payload-dashboard-api
+            cd payload-dashboard-ui
             git pull
             cd deploy
             ./deploy.sh
