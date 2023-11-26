@@ -44,21 +44,34 @@ export default function AppWebsiteVisits({ title, subheader, sensorData, filter,
     tooltip: {
       shared: true,
       intersect: false,
+      x: {
+        formatter: function formatTime(value) {
+          return new Date(value).toISOString().split('T')[1].split('.')[0];
+        },
+      },
       y: {
-        formatter: (value, {seriesIndex, w}) => {
-            const seriesName = w.config.series[seriesIndex].name;
+        formatter: (value, { seriesIndex, w }) => {
+          const seriesName = w.config.series[seriesIndex].name;
 
           if (typeof value !== 'undefined') {
             if (seriesName === 'Temperature') {
               return `${value.toFixed(2)} ºC`;
             }
-            
+
             if (seriesName === 'Humidity') {
               return `${value.toFixed(2)} %`;
             }
-            
+
             if (seriesName === 'Pressure') {
               return `${value.toFixed(0)} hPa`;
+            }
+
+            if (seriesName === 'Altitude') {
+              return `${value.toFixed(0)} m`;
+            }
+
+            if (seriesName === 'Speed') {
+              return `${value.toFixed(0)} km/h`;
             }
 
             return value.toFixed(0);

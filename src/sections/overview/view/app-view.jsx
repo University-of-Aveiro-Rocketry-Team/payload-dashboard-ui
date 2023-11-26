@@ -15,18 +15,28 @@ import AppWidgetSummary from '../app-widget-summary';
 // import AppCurrentSubject from '../app-current-subject';
 // import AppConversionRates from '../app-conversion-rates';
 
-import { fetchBME680Data } from '../api';
+import { fetchNEO7MData } from '../api';
 
 
 export default function AppView() {
-  const [sensorData, setSensorData] = React.useState(null);
+  // const [sensorData, setSensorData] = React.useState(null);
+  const [gpsData, setGpsData] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     setIsLoading(true);
-    fetchBME680Data()
+    // fetchBME680Data()
+    //   .then((data) => {
+    //     setSensorData(data);
+    //     setIsLoading(false);
+    //   })
+    //   .catch((error) => {
+    //     setIsLoading(false);
+    //   });
+
+    fetchNEO7MData()
       .then((data) => {
-        setSensorData(data);
+        setGpsData(data);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -75,29 +85,20 @@ export default function AppView() {
         </Grid>
         <Grid xs={12} sm={12}>
           <AppWebsiteVisits
-            title="Temperature"
-            subheader="(ºC)"
-            sensorData={sensorData}
-            filter="temperature"
-            color={['#ff0000']}
-          />
-        </Grid>
-        <Grid xs={12} sm={12}>
-          <AppWebsiteVisits
-            title="Humidity"
-            subheader="(Relative %)"
-            sensorData={sensorData}
-            filter="humidity"
-            color={[]}
-          />
-        </Grid>
-        <Grid xs={12} sm={12}>
-          <AppWebsiteVisits
-            title="Pressure"
-            subheader="(hPa)"
-            sensorData={sensorData}
-            filter="pressure"
+            title="Altitude"
+            subheader="(meters)"
+            sensorData={gpsData}
+            filter="altitude"
             color={['#3c44b1']}
+          />
+        </Grid>
+        <Grid xs={12} sm={12}>
+          <AppWebsiteVisits
+            title="Speed"
+            subheader="(kilometers per hour)"
+            sensorData={gpsData}
+            filter="speed"
+            color={[]}
           />
         </Grid>
       </Grid>

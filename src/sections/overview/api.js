@@ -12,3 +12,16 @@ export async function fetchBME680Data() {
     return undefined;
   }
 }
+
+export async function fetchNEO7MData() {
+  try {
+    const response = await fetch(`${API_BASE_URL}neo7m`);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+    return undefined;
+  }
+}
