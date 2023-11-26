@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
@@ -6,27 +7,54 @@ import CardHeader from '@mui/material/CardHeader';
 
 import Chart, { useChart } from 'src/components/chart';
 
+import { fetchNEO7MData } from './api';
 
-export default function AppWebsiteVisits({ title, subheader, sensorData, filter, color, ...other }) {
-  const formatChartData = (data) => {
-    const labels = data.map((item) => new Date(item.timestamp).toISOString());
-    const seriesData = data.map((item) => item.data[filter]);
-    
-    return {
-      labels,
-      colors: color,
-      series: [
-        {
-          name: title,
-          type: 'line',
-          fill: 'solid',
-          data: seriesData,
-        }
-      ],
-    };
-  };
-  const { labels, colors, series, options } = formatChartData(sensorData);
+
+export default function AppWebsiteVisits({ title, subheader, filter, color, ...other }) {
+  const [gpsData, setGpsData] = React.useState(null);  
   
+  // Fetch API Data
+  React.useEffect(() => {
+    const intervalId = setInterval(() => {
+      fetchNEO7MData()
+        .then((data) => {
+          setGpsData(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const formatChartData = (data) => {
+    try {
+      const labels = data.map((item) => new Date(item.timestamp).toISOString());
+      const seriesData = data.map((item) => item.data[filter]);
+      
+      return {
+        labels,
+        colors: color,
+        series: [
+          {
+            name: title,
+            type: 'line',
+            fill: 'solid',
+            data: seriesData,
+          },
+        ],
+      };
+    } catch (error) {
+      return {
+        labels: [],
+        colors: [],
+        series: [],
+      };
+    }
+  };
+  const { labels, colors, series, options } = formatChartData(gpsData);
+
   const chartOptions = useChart({
     colors,
     plotOptions: {
@@ -67,11 +95,11 @@ export default function AppWebsiteVisits({ title, subheader, sensorData, filter,
             }
 
             if (seriesName === 'Altitude') {
-              return `${value.toFixed(0)} m`;
+              return `${value.toFixed(2)} m`;
             }
 
             if (seriesName === 'Speed') {
-              return `${value.toFixed(0)} km/h`;
+              return `${value.toFixed(2)} km/h`;
             }
 
             return value.toFixed(0);
@@ -104,7 +132,6 @@ export default function AppWebsiteVisits({ title, subheader, sensorData, filter,
 AppWebsiteVisits.propTypes = {
   color: PropTypes.array,
   filter: PropTypes.string,
-  sensorData: PropTypes.array,
   subheader: PropTypes.string,
   title: PropTypes.string,
 };

@@ -15,39 +15,8 @@ import AppWidgetSummary from '../app-widget-summary';
 // import AppCurrentSubject from '../app-current-subject';
 // import AppConversionRates from '../app-conversion-rates';
 
-import { fetchNEO7MData } from '../api';
-
 
 export default function AppView() {
-  // const [sensorData, setSensorData] = React.useState(null);
-  const [gpsData, setGpsData] = React.useState(null);
-  const [isLoading, setIsLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    setIsLoading(true);
-    // fetchBME680Data()
-    //   .then((data) => {
-    //     setSensorData(data);
-    //     setIsLoading(false);
-    //   })
-    //   .catch((error) => {
-    //     setIsLoading(false);
-    //   });
-
-    fetchNEO7MData()
-      .then((data) => {
-        setGpsData(data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-      });
-  }, []);
-  
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <Container maxWidth="xl">
       <Grid container spacing={3}>
@@ -87,7 +56,6 @@ export default function AppView() {
           <AppWebsiteVisits
             title="Altitude"
             subheader="(meters)"
-            sensorData={gpsData}
             filter="altitude"
             color={['#3c44b1']}
           />
@@ -96,7 +64,6 @@ export default function AppView() {
           <AppWebsiteVisits
             title="Speed"
             subheader="(kilometers per hour)"
-            sensorData={gpsData}
             filter="speed"
             color={[]}
           />
