@@ -15,7 +15,7 @@ import Iconify from 'src/components/iconify';
 
 import Searchbar from './common/searchbar';
 import { NAV, HEADER } from './config-layout';
-import LanguagePopover from './common/language-popover';
+import ThemePopover from './common/theme-popover';
 
 
 export default function Header({ onOpenNav }) {
@@ -36,7 +36,7 @@ export default function Header({ onOpenNav }) {
       <Box sx={{ flexGrow: 1 }} />
 
       <Stack direction="row" alignItems="center" spacing={1}>
-        <LanguagePopover />
+        <ThemePopover />
       </Stack>
     </>
   );
