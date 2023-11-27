@@ -122,7 +122,6 @@ export function palette() {
 export function darkPalette() {
   return {
     ...base,
-    mode: 'dark',
     text: {
       primary: grey[100],
       secondary: grey[300],

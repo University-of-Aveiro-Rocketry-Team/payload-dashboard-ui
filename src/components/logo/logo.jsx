@@ -4,13 +4,15 @@ import { forwardRef } from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Avatar from '@mui/material/Avatar';
-import { alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import { alpha, useTheme } from '@mui/material/styles';
 
 import { RouterLink } from 'src/routes/components';
 
 
 const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
+  const what_theme = useTheme();
+
   const logo = (
     <Box
       sx={{
@@ -27,7 +29,9 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
       <Avatar src="/public/favicon/logo.png" alt="photoURL" />
 
       <Box sx={{ ml: 2 }}>
-        <Typography variant="subtitle2">UART - Payload</Typography>
+        <Typography variant="subtitle2" color={what_theme.palette.text.primary}>
+          UART - Payload
+        </Typography>
       </Box>
     </Box>
   );

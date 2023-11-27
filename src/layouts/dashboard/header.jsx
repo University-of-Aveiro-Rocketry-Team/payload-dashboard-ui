@@ -17,7 +17,6 @@ import Searchbar from './common/searchbar';
 import { NAV, HEADER } from './config-layout';
 import LanguagePopover from './common/language-popover';
 
-// ----------------------------------------------------------------------
 
 export default function Header({ onOpenNav }) {
   const theme = useTheme();
