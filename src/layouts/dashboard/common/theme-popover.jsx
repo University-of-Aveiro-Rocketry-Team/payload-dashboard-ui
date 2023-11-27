@@ -12,7 +12,7 @@ const LANGS = [
     icon: '/assets/icons/im_mode_dark.png',
   }
 ];
-let index = 0;
+let index = 1;
 
 
 export default function ThemePopover() {
