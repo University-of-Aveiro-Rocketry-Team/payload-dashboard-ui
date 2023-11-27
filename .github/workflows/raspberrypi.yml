@@ -24,9 +24,9 @@ jobs:
           username: ${{ secrets.CLERIGO_RASPBERRY_PI_USERNAME }}
           password: ${{ secrets.CLERIGO_RASPBERRY_PI_SSH_PASSWORD }}
           port: ${{ secrets.CLERIGO_RASPBERRY_PI_PORT }}
+          command_timeout: 30m
           script: |
             cd payload-dashboard-ui
             git pull
             cd deploy
             ./deploy.sh
-        timeout-minutes: 60
