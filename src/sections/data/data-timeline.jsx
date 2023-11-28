@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { faker } from '@faker-js/faker';
 
 import Card from '@mui/material/Card';
 import Timeline from '@mui/lab/Timeline';
@@ -13,7 +14,20 @@ import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
 import { fDateTime } from 'src/utils/format-time';
 
 
-export default function AnalyticsOrderTimeline({ title, subheader, list, ...other }) {
+export default function DataTimeline({ title, subheader, ...other }) {
+  const list=Array.from({ length: 5 }).map((_, index) => ({
+              id: faker.string.uuid(),
+              title: [
+                '1983, orders, $4220',
+                '12 Invoices have been paid',
+                'Order #37745 from September',
+                'New order placed #XF-2356',
+                'New order placed #XF-2346',
+              ][index],
+              type: `order${index + 1}`,
+              time: faker.date.past(),
+            }))
+
   return (
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} />
@@ -36,8 +50,7 @@ export default function AnalyticsOrderTimeline({ title, subheader, list, ...othe
   );
 }
 
-AnalyticsOrderTimeline.propTypes = {
-  list: PropTypes.array,
+DataTimeline.propTypes = {
   subheader: PropTypes.string,
   title: PropTypes.string,
 };
