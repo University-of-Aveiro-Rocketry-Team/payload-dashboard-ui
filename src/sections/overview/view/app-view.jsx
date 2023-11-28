@@ -8,7 +8,8 @@ import Grid from '@mui/material/Unstable_Grid2';
 
 // import AppNewsUpdate from '../app-news-update';
 // import AppOrderTimeline from '../app-order-timeline';
-// import AppCurrentVisits from '../app-current-visits';
+import VisualizerCard from '../visualizer-card';
+import NormalDataCard from '../normal-data-card';
 import NormalDataGraph from '../normal-data-graph';
 import AppWidgetSummary from '../app-widget-summary';
 // import AppTrafficBySite from '../app-traffic-by-site';
@@ -76,23 +77,20 @@ export default function AppView() {
             color={[]}
           />
         </Grid>
+
+        <Grid xs={12} md={6} lg={8}>
+          <VisualizerCard
+            title="Visualizer"
+          />
+        </Grid>
+        <Grid xs={12} md={6} lg={4}>
+          <NormalDataCard
+            title="Gyroscope Data"
+          />
+        </Grid>
       </Grid>
 
       {/*
-        <Grid xs={12} md={6} lg={4}>
-          <AppCurrentVisits
-            title="Current Visits"
-            chart={{
-              series: [
-                { label: 'America', value: 4344 },
-                { label: 'Asia', value: 5435 },
-                { label: 'Europe', value: 1443 },
-                { label: 'Africa', value: 4443 },
-              ],
-            }}
-          />
-        </Grid>
-
         <Grid xs={12} md={6} lg={8}>
           <AppConversionRates
             title="Conversion Rates"
