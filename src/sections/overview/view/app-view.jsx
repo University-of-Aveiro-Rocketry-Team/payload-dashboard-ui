@@ -9,7 +9,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 // import AppNewsUpdate from '../app-news-update';
 // import AppOrderTimeline from '../app-order-timeline';
 // import AppCurrentVisits from '../app-current-visits';
-import AppWebsiteVisits from '../app-website-visits';
+import NormalDataGraph from '../normal-data-graph';
 import AppWidgetSummary from '../app-widget-summary';
 // import AppTrafficBySite from '../app-traffic-by-site';
 // import AppCurrentSubject from '../app-current-subject';
@@ -53,18 +53,26 @@ export default function AppView() {
           />
         </Grid>
         <Grid xs={12} sm={12}>
-          <AppWebsiteVisits
+          <NormalDataGraph
             title="Altitude"
             subheader="(meters)"
-            filter="altitude"
+            dataFilters={['altitude', 'pressure']}
             color={['#3c44b1']}
           />
         </Grid>
         <Grid xs={12} sm={12}>
-          <AppWebsiteVisits
+          <NormalDataGraph
             title="Speed"
             subheader="(kilometers per hour)"
-            filter="speed"
+            dataFilters={['speed']}
+            color={[]}
+          />
+        </Grid>
+        <Grid xs={12} sm={12}>
+          <NormalDataGraph
+            title="Acceleration"
+            subheader="(meters per second squared)"
+            dataFilters={['acceleration_x', 'acceleration_y', 'acceleration_z']}
             color={[]}
           />
         </Grid>

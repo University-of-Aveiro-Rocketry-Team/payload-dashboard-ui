@@ -7,10 +7,13 @@ import CardHeader from '@mui/material/CardHeader';
 
 import Chart, { useChart } from 'src/components/chart';
 
-import { fetchNEO7MData } from './api';
+import { fetchNEO7MData, fetchBME680Data, fetchMPU6500Data } from './api';
 
 
-export default function AppWebsiteVisits({ title, subheader, filter, color, ...other }) {
+export default function NormalDataGraph({ title, subheader, dataFilters, color, ...other }) {
+  const [allData, setAllData] = React.useState([]);
+  const [bme680Data, setBme680Data] = React.useState(null);
+  const [mpu6500Data, setMpu6500Data] = React.useState(null);
   const [gpsData, setGpsData] = React.useState(null);  
   
   // Fetch API Data
@@ -23,27 +26,62 @@ export default function AppWebsiteVisits({ title, subheader, filter, color, ...o
         .catch((error) => {
           console.error(error);
         });
+
+      fetchBME680Data()
+        .then((data) => {
+          setBme680Data(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+      fetchMPU6500Data()
+        .then((data) => {
+          setMpu6500Data(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+      // Merge data
+      if (bme680Data && gpsData && mpu6500Data) {
+        const mergedData = bme680Data.map((item, index) => ({
+          ...item,
+          data: {
+            ...item.data,
+            ...gpsData[index].data,
+            ...mpu6500Data[index].data,
+          },
+        }));
+        setAllData(mergedData);
+      }
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [bme680Data, gpsData, mpu6500Data]);
 
-  const formatChartData = (data) => {
+  const formatChartData = (data, filters) => {
     try {
       const labels = data.map((item) => new Date(item.timestamp).toISOString());
-      const seriesData = data.map((item) => item.data[filter]);
-      
+      const series = filters.map((filter) => {
+        const seriesData = data.map((item) => item.data[filter]);
+        let customName = filter.charAt(0).toUpperCase() + filter.slice(1);
+
+        if (filter === 'Altitude') customName = 'GPS-Altitude';
+        if (filter.indexOf('acceleration') !== -1) customName = filter.substring(filter.length - 1).toUpperCase();
+
+        return {
+          name: customName,
+          type: 'line',
+          fill: 'solid',
+          data: seriesData,
+        };
+      });
+
       return {
         labels,
         colors: color,
-        series: [
-          {
-            name: title,
-            type: 'line',
-            fill: 'solid',
-            data: seriesData,
-          },
-        ],
+        series,
       };
     } catch (error) {
       return {
@@ -53,7 +91,7 @@ export default function AppWebsiteVisits({ title, subheader, filter, color, ...o
       };
     }
   };
-  const { labels, colors, series, options } = formatChartData(gpsData);
+  const { labels, colors, series, options } = formatChartData(allData, dataFilters);
 
   const chartOptions = useChart({
     colors,
@@ -68,6 +106,11 @@ export default function AppWebsiteVisits({ title, subheader, filter, color, ...o
     labels,
     xaxis: {
       type: 'datetime',
+    },
+    yaxis: {
+      labels: {
+        formatter: (value) => value.toFixed(2),
+      },
     },
     tooltip: {
       shared: true,
@@ -90,16 +133,16 @@ export default function AppWebsiteVisits({ title, subheader, filter, color, ...o
               return `${value.toFixed(2)} %`;
             }
 
-            if (seriesName === 'Pressure') {
-              return `${value.toFixed(0)} hPa`;
-            }
-
-            if (seriesName === 'Altitude') {
+            if (seriesName === 'Altitude' || seriesName === 'Pressure') {
               return `${value.toFixed(2)} m`;
             }
 
             if (seriesName === 'Speed') {
               return `${value.toFixed(2)} km/h`;
+            }
+
+            if (seriesName === 'X' || seriesName === 'Y' || seriesName === 'Z') {
+              return `${value.toFixed(2)} m/s²`;
             }
 
             return value.toFixed(0);
@@ -129,9 +172,9 @@ export default function AppWebsiteVisits({ title, subheader, filter, color, ...o
   );
 }
 
-AppWebsiteVisits.propTypes = {
+NormalDataGraph.propTypes = {
   color: PropTypes.array,
-  filter: PropTypes.string,
+  dataFilters: PropTypes.array,
   subheader: PropTypes.string,
   title: PropTypes.string,
 };
