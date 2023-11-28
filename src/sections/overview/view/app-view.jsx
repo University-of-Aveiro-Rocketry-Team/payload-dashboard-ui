@@ -3,7 +3,6 @@ import React from 'react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 
-// import AppOrderTimeline from '../app-order-timeline';
 import VisualizerCard from '../visualizer-card';
 import NormalDataCard from '../normal-data-card';
 import NormalDataGraph from '../normal-data-graph';
@@ -49,39 +48,52 @@ export default function AppView() {
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
           />
         </Grid>
+
+        {/* ROW */}
         <Grid xs={12} sm={12}>
           <NormalDataGraph
             title="Altitude"
-            subheader="(meters)"
+            subheader="(Meters)"
             dataFilters={['altitude', 'pressure']}
-            color={['#3c44b1']}
+            color={['#3c44b1', '#d63f6a']}
           />
         </Grid>
+
+        {/* ROW */}
+        <Grid xs={12} md={6} lg={8}>
+          <VisualizerCard title="Visualizer" />
+        </Grid>
+        <Grid xs={12} md={6} lg={4}>
+          <NormalDataCard title="Gyroscope Data" />
+        </Grid>
+
+        {/* ROW */}
         <Grid xs={12} sm={12}>
           <NormalDataGraph
             title="Speed"
-            subheader="(kilometers per hour)"
+            subheader="(Kilometers per hour)"
             dataFilters={['speed']}
             color={[]}
           />
         </Grid>
+
+        {/* ROW */}
         <Grid xs={12} sm={12}>
           <NormalDataGraph
-            title="Acceleration"
-            subheader="(meters per second squared)"
-            dataFilters={['acceleration_x', 'acceleration_y', 'acceleration_z']}
-            color={[]}
+            title="Vibrations"
+            subheader="(Hz)"
+            dataFilters={['frequency']}
+            color={['#f6b26b']}
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={8}>
-          <VisualizerCard
-            title="Visualizer"
-          />
-        </Grid>
-        <Grid xs={12} md={6} lg={4}>
-          <NormalDataCard
-            title="Gyroscope Data"
+        {/* ROW */}
+        <Grid xs={12} sm={12}>
+          <NormalDataGraph
+            title="Acceleration"
+            subheader="(Meters per second squared)"
+            dataFilters={['acceleration_x', 'acceleration_y', 'acceleration_z']}
+            color={['#3c1fb1', '#1877f2', '#3ca9b1']}
           />
         </Grid>
       </Grid>

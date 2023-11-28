@@ -71,6 +71,11 @@ export default function NormalDataGraph({ title, subheader, dataFilters, color, 
             console.error(error);
           });
       }
+
+      // Vibrations Graph
+      if (dataFilters.includes('vibrations')) {
+        // TO DO
+      }
     }, 1000);
 
     return () => clearInterval(intervalId);
