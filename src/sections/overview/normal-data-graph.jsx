@@ -7,7 +7,7 @@ import CardHeader from '@mui/material/CardHeader';
 
 import Chart, { useChart } from 'src/components/chart';
 
-import { fetchNEO7MData, fetchBME680Data, fetchMPU6500Data } from './api';
+import { fetchNEO7MData, fetchBME680Data, fetchMPU6500Data } from '../common/api';
 
 
 export default function NormalDataGraph({ title, subheader, dataFilters, color, ...other }) {

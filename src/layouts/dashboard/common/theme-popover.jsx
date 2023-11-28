@@ -5,11 +5,11 @@ import { useTheme } from 'src/theme';
 const LANGS = [
   {
     label: 'Light Mode',
-    icon: '/assets/icons/im_mode_light.png',
+    icon: '/assets/icons/img_mode_light.png',
   },
   {
     label: 'Dark Mode',
-    icon: '/assets/icons/im_mode_dark.png',
+    icon: '/assets/icons/img_mode_dark.png',
   }
 ];
 let index = 1;

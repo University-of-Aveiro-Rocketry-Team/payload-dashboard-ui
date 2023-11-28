@@ -1,12 +1,8 @@
 import React from 'react';
-// import { faker } from '@faker-js/faker';
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 
-// import Iconify from 'src/components/iconify';
-
-// import AppNewsUpdate from '../app-news-update';
 // import AppOrderTimeline from '../app-order-timeline';
 import VisualizerCard from '../visualizer-card';
 import NormalDataCard from '../normal-data-card';
@@ -123,19 +119,6 @@ export default function AppView() {
                 { name: 'Series 3', data: [44, 76, 78, 13, 43, 10] },
               ],
             }}
-          />
-        </Grid>
-
-        <Grid xs={12} md={6} lg={8}>
-          <AppNewsUpdate
-            title="News Update"
-            list={[...Array(5)].map((_, index) => ({
-              id: faker.string.uuid(),
-              title: faker.person.jobTitle(),
-              description: faker.commerce.productDescription(),
-              image: `/assets/images/covers/cover_${index + 1}.jpg`,
-              postedAt: faker.date.recent(),
-            }))}
           />
         </Grid>
 

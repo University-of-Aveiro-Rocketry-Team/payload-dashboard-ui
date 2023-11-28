@@ -1,4 +1,4 @@
-const API_BASE_URL = `http://${import.meta.env.VITE_API_IP || 'localhost'}:3000/api/v1/`;
+const API_BASE_URL = `http://${import.meta.env.VITE_API_IP || 'localhost'}:${import.meta.env.VITE_PORT || '3000'}/api/v1/`;
 
 export async function fetchBME680Data() {
   try {

@@ -1,4 +1,4 @@
 #!/bin/sh
 
-docker compose down
-docker compose up -d
+docker compose pull ui
+docker compose up -d --no-deps --force-recreate ui

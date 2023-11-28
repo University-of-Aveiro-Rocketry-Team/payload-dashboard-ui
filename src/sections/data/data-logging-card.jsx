@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { faker } from '@faker-js/faker';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -15,10 +16,17 @@ import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
 
 
-export default function AppNewsUpdate({ title, subheader, list, ...other }) {
+export default function DataLoggingCard({ title, ...other }) {
+  const list = Array.from({ length: 15 }, (_, index) => ({
+    id: faker.string.uuid(),
+    title: faker.person.jobTitle(),
+    description: faker.commerce.productDescription(),
+    postedAt: faker.date.recent(),
+  }));
+
   return (
     <Card {...other}>
-      <CardHeader title={title} subheader={subheader} />
+      <CardHeader title={title} />
 
       <Scrollbar>
         <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
@@ -43,25 +51,17 @@ export default function AppNewsUpdate({ title, subheader, list, ...other }) {
   );
 }
 
-AppNewsUpdate.propTypes = {
+DataLoggingCard.propTypes = {
   title: PropTypes.string,
   subheader: PropTypes.string,
-  list: PropTypes.array.isRequired,
 };
 
 
 function NewsItem({ news }) {
-  const { image, title, description, postedAt } = news;
+  const { title, description, postedAt } = news;
 
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
-      <Box
-        component="img"
-        alt={title}
-        src={image}
-        sx={{ width: 48, height: 48, borderRadius: 1.5, flexShrink: 0 }}
-      />
-
       <Box sx={{ minWidth: 240, flexGrow: 1 }}>
         <Link color="inherit" variant="subtitle2" underline="hover" noWrap>
           {title}
@@ -81,7 +81,6 @@ function NewsItem({ news }) {
 
 NewsItem.propTypes = {
   news: PropTypes.shape({
-    image: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
     postedAt: PropTypes.instanceOf(Date),
