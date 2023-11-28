@@ -13,52 +13,68 @@ import { fetchNEO7MData, fetchBME680Data, fetchMPU6500Data } from './api';
 export default function NormalDataGraph({ title, subheader, dataFilters, color, ...other }) {
   const [allData, setAllData] = React.useState([]);
   const [bme680Data, setBme680Data] = React.useState(null);
-  const [mpu6500Data, setMpu6500Data] = React.useState(null);
-  const [gpsData, setGpsData] = React.useState(null);  
-  
+  const [gpsData, setGpsData] = React.useState(null);
+
   // Fetch API Data
   React.useEffect(() => {
     const intervalId = setInterval(() => {
-      fetchNEO7MData()
+
+      // Speed Graph
+      if (dataFilters.includes('speed')) {
+        fetchNEO7MData()
+          .then((data) => {
+            setAllData(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+      
+      // Altitude Graph
+      if (dataFilters.includes('altitude') && dataFilters.includes('pressure')) {        
+        fetchNEO7MData()
         .then((data) => {
           setGpsData(data);
         })
         .catch((error) => {
           console.error(error);
         });
-
-      fetchBME680Data()
+        
+        fetchBME680Data()
         .then((data) => {
           setBme680Data(data);
         })
         .catch((error) => {
           console.error(error);
         });
+        
+        if (gpsData && bme680Data) {
+          const mergedData = gpsData.map((item, index) => ({
+            timestamp: item.timestamp,
+            data: {
+              altitude: item.data.altitude,
+              pressure: bme680Data[index].data.pressure,
+            },
+          }));
 
-      fetchMPU6500Data()
-        .then((data) => {
-          setMpu6500Data(data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-
-      // Merge data
-      if (bme680Data && gpsData && mpu6500Data) {
-        const mergedData = bme680Data.map((item, index) => ({
-          ...item,
-          data: {
-            ...item.data,
-            ...gpsData[index].data,
-            ...mpu6500Data[index].data,
-          },
-        }));
-        setAllData(mergedData);
+          setAllData(mergedData);
+        }
+      }
+      
+      // Acceleration Graph
+      if (dataFilters.includes('acceleration_x') || dataFilters.includes('acceleration_y') || dataFilters.includes('acceleration_z')) {
+        fetchMPU6500Data()
+          .then((data) => {
+            setAllData(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       }
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [bme680Data, gpsData, mpu6500Data]);
+  }, [bme680Data, gpsData, dataFilters]);
 
   const formatChartData = (data, filters) => {
     try {
@@ -68,7 +84,8 @@ export default function NormalDataGraph({ title, subheader, dataFilters, color, 
         let customName = filter.charAt(0).toUpperCase() + filter.slice(1);
 
         if (filter === 'Altitude') customName = 'GPS-Altitude';
-        if (filter.indexOf('acceleration') !== -1) customName = filter.substring(filter.length - 1).toUpperCase();
+        if (filter.indexOf('acceleration') !== -1)
+          customName = filter.substring(filter.length - 1).toUpperCase();
 
         return {
           name: customName,
