@@ -81,7 +81,7 @@ export default function AppView() {
         <Grid xs={12} sm={12}>
           <NormalDataGraph
             title="Vibrations"
-            subheader="(Hz)"
+            subheader="(Hertz)"
             dataFilters={['frequency']}
             color={['#f6b26b']}
           />
