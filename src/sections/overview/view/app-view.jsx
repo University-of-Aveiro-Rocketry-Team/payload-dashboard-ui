@@ -60,11 +60,11 @@ export default function AppView() {
         </Grid>
 
         {/* ROW */}
-        <Grid xs={12} md={6} lg={8}>
-          <VisualizerCard title="Visualizer" />
+        <Grid xs={12} md={8} lg={8}>
+          <VisualizerCard title="Gyroscope Visualizer" />
         </Grid>
-        <Grid xs={12} md={6} lg={4}>
-          <NormalDataCard title="Gyroscope Data" />
+        <Grid xs={12} md={8} lg={4}>
+          <NormalDataCard title="Gyroscope Values" />
         </Grid>
 
         {/* ROW */}

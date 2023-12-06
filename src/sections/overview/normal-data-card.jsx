@@ -6,7 +6,7 @@ import CardHeader from '@mui/material/CardHeader';
 
 export default function NormalDataCard({ title,  ...other }) {
   return (
-    <Card {...other} style={{ height: '500px' }}>
+    <Card {...other} style={{ height: '650px' }}>
       <CardHeader title={title} sx={{ mb: 5 }} />
     </Card>
   );
