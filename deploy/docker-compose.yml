@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   ui:
-    image: andreclerigo/payload-dashboard-ui:latest-arm64
+    image: andreclerigo/payload-dashboard-ui:latest-arm64-build
     pull_policy: always
     container_name: ui
     ports:
