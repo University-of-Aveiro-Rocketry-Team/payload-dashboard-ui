@@ -34,6 +34,7 @@ jobs:
           push: true
           tags: andreclerigo/payload-dashboard-ui:latest-amd64
           platforms: linux/amd64
+          file: ./Dockerfile
 
   build-and-push-arm64:
     runs-on: ubuntu-latest
@@ -59,3 +60,34 @@ jobs:
           push: true
           tags: andreclerigo/payload-dashboard-ui:latest-arm64
           platforms: linux/arm64
+          file: ./Dockerfile
+  
+  build-and-push-arm64-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.CLERIGO_DOCKERHUB_USERNAME }}
+          password: ${{ secrets.CLERIGO_DOCKERHUB_TOKEN }}
+
+      - name: Build and Push ARM64 Image
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: andreclerigo/payload-dashboard-ui:latest-arm64-prod
+          platforms: linux/arm64
+          file: ./Dockerfile.prod
+          build-args: |
+            VITE_API_IP=${{ secrets.CLERIGO_RASPBERRY_PI_HOST }}
+            VITE_MQTT_USERNAME=${{ secrets.MQTT_USERNAME }}
+            VITE_MQTT_PASSWORD=${{ secrets.MQTT_PASSWORD }}
