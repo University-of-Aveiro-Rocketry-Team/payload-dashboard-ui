@@ -15,9 +15,6 @@ RUN yarn install
 # Bundle the source code inside the Docker image
 COPY . .
 
-# Copy the .env file from deploy folder to the container's working directory
-COPY deploy/.env .env
-
 # Build the application (assuming you have a build script in package.json)
 RUN yarn build
 
