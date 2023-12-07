@@ -6,12 +6,6 @@ services:
     pull_policy: always
     container_name: ui
     ports:
-      - "80:3030"
-    volumes:
-      - .:/ui
-      - /ui/node_modules
-    command: "yarn dev --host"
+      - "80:80"
     environment:
-      - NODE_ENV=development
-    env_file:
-      - .env
+      - NODE_ENV=production

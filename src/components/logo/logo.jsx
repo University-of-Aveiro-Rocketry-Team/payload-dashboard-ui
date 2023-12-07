@@ -26,7 +26,7 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
         bgcolor: (theme) => alpha(theme.palette.grey[500], 0.12),
       }}
     >
-      <Avatar src="/public/favicon/logo.png" alt="photoURL" />
+      <Avatar src="/logo.png" alt="photoURL" />
 
       <Box sx={{ ml: 2 }}>
         <Typography variant="subtitle2" color={what_theme.palette.text.primary}>
