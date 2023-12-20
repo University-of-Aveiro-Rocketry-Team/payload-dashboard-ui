@@ -88,6 +88,7 @@ export default function NormalDataGraph({ title, subheader, dataFilters, color, 
         const seriesData = data.map((item) => item.data[filter]);
         let customName = filter.charAt(0).toUpperCase() + filter.slice(1);
 
+        // Custom name
         if (filter === 'Altitude') customName = 'GPS-Altitude';
         if (filter.indexOf('acceleration') !== -1)
           customName = filter.substring(filter.length - 1).toUpperCase();
