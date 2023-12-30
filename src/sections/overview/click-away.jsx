@@ -28,7 +28,7 @@ export default function ClickAway({ title, subtitle,color, icon, who, sx, ...oth
     border: 'none',
     p: 1,
     width: '75%',
-    height: '100%',
+    height: 'auto',
   };
 
   return (

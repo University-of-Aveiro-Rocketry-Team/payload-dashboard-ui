@@ -7,7 +7,7 @@ export default function DataPage() {
   return (
     <>
       <Helmet>
-        <title>Data</title>
+        <title>Logs</title>
       </Helmet>
 
       <DataView />

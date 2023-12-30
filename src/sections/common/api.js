@@ -1,4 +1,4 @@
-const API_BASE_URL = `http://${import.meta.env.VITE_API_IP || 'localhost'}:${import.meta.env.VITE_PORT || '3000'}/api/v1/`;
+// const API_BASE_URL = `http://${import.meta.env.VITE_API_IP || 'localhost'}:${import.meta.env.VITE_PORT || '3000'}/api/v1/`;
 
 // MQ9 (CO) API
 export async function fetchMQ9Latest() {
@@ -206,4 +206,19 @@ export async function fetchBME680Data(n) {
     "gas": 8,
     "time": "2024-02-22T14:30:00.302Z"
   }];
+}
+
+export async function fetchLogs(){
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/logs/`);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    // respose has format {logs: [log1, log2, ...]}
+    // return only the logs array
+    return await response.json().then(data => data.logs);
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+    return undefined;
+  }
 }

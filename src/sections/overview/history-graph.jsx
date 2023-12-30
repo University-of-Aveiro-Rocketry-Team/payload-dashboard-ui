@@ -260,9 +260,14 @@ export default function HistoryGraph({ title, subheader, dataFilters, color, ...
     return (
       <Card {...other}>
         <Grid container alignItems="center">
-          <Grid item xs={8}>
-            <CardHeader title={title} subheader={subheader} />
-          </Grid>
+        <Grid item xs={12} md={8}>
+          {/* Title and subheader in the left */}
+          <CardHeader
+            title={title}
+            subheader={subheader}
+            sx={{ textAlign: 'left' }} // Align to the left
+          />
+        </Grid>
           <Grid item xs={4} style={{ textAlign: 'right' }}>
             <ToggleButtonGroup
               color="primary"

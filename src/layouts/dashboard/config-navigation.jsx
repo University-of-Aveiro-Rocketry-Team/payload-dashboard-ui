@@ -12,11 +12,6 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
-    title: 'map',
-    path: '/map',
-    icon: icon('ic_map'),
-  },
-  {
     title: 'data',
     path: '/data',
     icon: icon('ic_data'),

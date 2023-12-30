@@ -7,7 +7,7 @@ export default function DataView() {
   return (
     <Container maxWidth="xl">
       <DataTimeline
-        title="Data Timeline"
+        title="Logs"
       />
     </Container>
   );
