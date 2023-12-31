@@ -64,7 +64,7 @@ export default function HistoryGraph({ title, subheader, dataFilters, color, ...
             }
 
             // temp, humidity, pressure graph (bme680)
-            if (dataFilters.includes('temperature') || dataFilters.includes('humidity') || dataFilters.includes('gas')) {
+            if (dataFilters.includes('temperature') || dataFilters.includes('humidity') || dataFilters.includes('gas') || dataFilters.includes('pressure')) {
                 fetchBME680Data(Number(history))
                     .then((data) => {
                         setData(data);
@@ -99,6 +99,15 @@ export default function HistoryGraph({ title, subheader, dataFilters, color, ...
                         timestamp: item.time,
                         data: {
                             gas: item.gas,
+                        },
+                    }));
+                    setAllData(tmp);
+                }
+                if (dataFilters.includes('pressure')) {
+                    const tmp = info.map((item) => ({
+                        timestamp: item.time,
+                        data: {
+                            pressure: item.pressure,
                         },
                     }));
                     setAllData(tmp);

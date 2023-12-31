@@ -71,6 +71,16 @@ export default function DynamicAppWidget({ title, color, icon, who, ...other }) 
                         console.error(error);
                     });
             }
+            else if (who === 'pressure') {
+                fetchBME680Latest()
+                    .then((data) => {
+                        console.log("PRESSURE", data);
+                        setLatestData(data.pressure);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
         }, 1000);
 
 

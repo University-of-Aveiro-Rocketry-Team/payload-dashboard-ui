@@ -31,23 +31,11 @@ export default function AppView() {
             title="Carbon Monoxide Levels (CO)"
             subtitle="Parts per million (PPM)"
             color="primary"
-            icon={<img alt="icon" src="/assets/icons/glass/pressure.png" />}
+            icon={<img alt="icon" src="/assets/icons/glass/co.png" />}
             who="co"
             sx={clickAwayStyle}
           />
           </Item>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={4}>
-        <Item>
-          <ClickAway
-            title="Oxygen Levels (O2)" 
-            subtitle="Parts per million (PPM)"
-            color="info"
-            icon={<img alt="icon" src="/assets/icons/glass/o2.png" />}
-            who="o2"
-            sx={clickAwayStyle}
-          />
-        </Item>
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={4}>
         <Item>
@@ -57,6 +45,18 @@ export default function AppView() {
             color="warning"
             icon={<img alt="icon" src="/assets/icons/glass/co2.png" />}
             who="co2"
+          />
+        </Item>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={4}>
+        <Item>
+          <ClickAway
+            title="Pressure Levels" 
+            subtitle="Parts per million (PPM)"
+            color="info"
+            icon={<img alt="icon" src="/assets/icons/glass/pressure.png" />}
+            who="pressure"
+            sx={clickAwayStyle}
           />
         </Item>
         </Grid>
@@ -88,7 +88,7 @@ export default function AppView() {
             title="Gases Levels"
             subtitle="Parts per million (PPM)"
             color="error"
-            icon={<img alt="icon" src="/assets/icons/glass/gases.png" />}
+            icon={<img alt="icon" src="/assets/icons/glass/gasses.png" />}
             who="gas"
           />
         </Item>
