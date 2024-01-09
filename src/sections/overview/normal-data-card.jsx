@@ -71,17 +71,17 @@ export default function NormalDataCard({ title, ...other }) {
       >
         <div>
           <h2>Pitch</h2>
-          <div>{gyroData.y} °</div>
+          <div>{gyroData.y.toFixed(0)} °</div>
         </div>
 
         <div>
           <h2>Yaw</h2>
-          <div>{gyroData.z} °</div>
+          <div>{gyroData.z.toFixed(0)} °</div>
         </div>
 
         <div>
           <h2>Roll</h2>
-          <div>{gyroData.x} °</div>
+          <div>{gyroData.x.toFixed(0)} °</div>
         </div>
       </div>
     </Card>

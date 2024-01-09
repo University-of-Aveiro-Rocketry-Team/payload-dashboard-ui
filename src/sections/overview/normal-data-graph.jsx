@@ -165,7 +165,7 @@ export default function NormalDataGraph({ title, subheader, dataFilters, color, 
             }
 
             if (seriesName === 'X' || seriesName === 'Y' || seriesName === 'Z') {
-              return `${value.toFixed(2)} m/s²`;
+              return `${value.toFixed(3)} g`;
             }
 
             return value.toFixed(0);
