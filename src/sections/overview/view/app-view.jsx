@@ -91,7 +91,7 @@ export default function AppView() {
         <Grid xs={12} sm={12}>
           <NormalDataGraph
             title="Acceleration"
-            subheader="(Unities of gravity)"
+            subheader="(Unites of gravity)"
             dataFilters={['acceleration_x', 'acceleration_y', 'acceleration_z']}
             color={['#3c1fb1', '#1877f2', '#3ca9b1']}
           />

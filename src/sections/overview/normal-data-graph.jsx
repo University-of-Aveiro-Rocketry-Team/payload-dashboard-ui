@@ -83,9 +83,12 @@ export default function NormalDataGraph({ title, subheader, dataFilters, color, 
 
   const formatChartData = (data, filters) => {
     try {
-      const labels = data.map((item) => new Date(item.timestamp).toISOString());
+      // Slice the data array to keep only the last 10 elements
+      const latestData = data.slice(-10);
+
+      const labels = latestData.map((item) => new Date(item.timestamp).toISOString());
       const series = filters.map((filter) => {
-        const seriesData = data.map((item) => item.data[filter]);
+        const seriesData = latestData.map((item) => item.data[filter]);
         let customName = filter.charAt(0).toUpperCase() + filter.slice(1);
 
         // Custom name
@@ -165,7 +168,7 @@ export default function NormalDataGraph({ title, subheader, dataFilters, color, 
             }
 
             if (seriesName === 'X' || seriesName === 'Y' || seriesName === 'Z') {
-              return `${value.toFixed(3)} g`;
+              return `${value.toFixed(4)} g`;
             }
 
             return value.toFixed(0);
