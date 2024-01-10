@@ -51,17 +51,31 @@ export default function DataTimeline({ title, subheader, ...other }) {
   };
 
   const mergeData = useCallback(
+    // (bme680, mpu6500, neo7m) =>
+    //   bme680.map((bmeDataPoint, index) => {
+    //     const mpuMatch = findClosestTimestamp(bmeDataPoint.timestamp, mpu6500);
+    //     const neoMatch = findClosestTimestamp(bmeDataPoint.timestamp, neo7m);
+
+    //     return {
+    //       packetNumber: index + 1,
+    //       time: bmeDataPoint.timestamp,
+    //       bme680: bmeDataPoint.data,
+    //       mpu6500: mpuMatch ? mpuMatch.data : null,
+    //       neo7m: neoMatch ? neoMatch.data : null,
+    //     };
+    //   }),
     (bme680, mpu6500, neo7m) =>
-      bme680.map((bmeDataPoint, index) => {
-        const mpuMatch = findClosestTimestamp(bmeDataPoint.timestamp, mpu6500);
-        const neoMatch = findClosestTimestamp(bmeDataPoint.timestamp, neo7m);
+      mpu6500.map((mpuDataPoint, index) => {
+        const bmeMatch = findClosestTimestamp(mpuDataPoint.timestamp, bme680);
+        const neoMatch = findClosestTimestamp(mpuDataPoint.timestamp, neo7m);
+        console.log(bmeMatch, neoMatch);
 
         return {
           packetNumber: index + 1,
-          time: bmeDataPoint.timestamp,
-          bme680: bmeDataPoint.data,
-          mpu6500: mpuMatch ? mpuMatch.data : null,
-          neo7m: neoMatch ? neoMatch.data : null,
+          time: mpuDataPoint.timestamp,
+          // bme680: bmeMatch ? bmeMatch.data : null,
+          mpu6500: mpuDataPoint.data,
+          // neo7m: neoMatch ? neoMatch.data : null,
         };
       }),
     []
@@ -80,21 +94,6 @@ export default function DataTimeline({ title, subheader, ...other }) {
 
     return () => clearInterval(intervalId);
   }, [mergeData]);
-
-  /*
-  const list = Array.from({ length: 5 }).map((_, index) => ({
-    id: faker.string.uuid(),
-    title: [
-      '1983, orders, $4220',
-      '12 Invoices have been paid',
-      'Order #37745 from September',
-      'New order placed #XF-2356',
-      'New order placed #XF-2346',
-    ][index],
-    type: `order${index + 1}`,
-    time: faker.date.past(),
-  }));
-  */
 
   return (
     <Card {...other}>
@@ -134,7 +133,7 @@ function OrderItem({ item, lastTimeline }) {
             // (type === 'order2' && 'success') ||
             // (type === 'order3' && 'info') ||
             // (type === 'order4' && 'warning') ||
-            'primary'
+            'info'
           }
         />
         {lastTimeline ? null : <TimelineConnector />}
