@@ -75,7 +75,7 @@ export default function DataTimeline({ title, subheader, ...other }) {
           time: mpuDataPoint.timestamp,
           // bme680: bmeMatch ? bmeMatch.data : null,
           mpu6500: mpuDataPoint.data,
-          // neo7m: neoMatch ? neoMatch.data : null,
+          neo7m: neoMatch ? neoMatch.data : null,
         };
       }),
     []
