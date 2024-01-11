@@ -164,7 +164,7 @@ export default function NormalDataGraph({ title, subheader, dataFilters, color, 
             }
 
             if (seriesName === 'Speed') {
-              return `${value.toFixed(2)} km/h`;
+              return `${value.toFixed(2)} kt/h`;
             }
 
             if (seriesName === 'X' || seriesName === 'Y' || seriesName === 'Z') {

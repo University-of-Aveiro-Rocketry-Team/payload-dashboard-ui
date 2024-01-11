@@ -71,7 +71,7 @@ export default function AppView() {
         <Grid xs={12} sm={12}>
           <NormalDataGraph
             title="Speed"
-            subheader="(Kilometers per hour)"
+            subheader="(Knots per hour)"
             dataFilters={['speed']}
             color={[]}
           />
@@ -91,7 +91,7 @@ export default function AppView() {
         <Grid xs={12} sm={12}>
           <NormalDataGraph
             title="Acceleration"
-            subheader="(Unites of gravity)"
+            subheader="(Units of gravity)"
             dataFilters={['acceleration_x', 'acceleration_y', 'acceleration_z']}
             color={['#3c1fb1', '#1877f2', '#3ca9b1']}
           />
