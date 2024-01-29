@@ -10,7 +10,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 import Chart, { useChart } from "src/components/chart";
 
-import { fetchMQ9Data, fetchBME680Data, fetchSEN0159Data, fetchSEN0322Data } from "../common/api";
+import { fetchMQ9Data, fetchBME680Data, fetchSEN0159Data } from "../common/api";
 
 export default function HistoryGraph({ title, subheader, dataFilters, color, ...other }) {
     // For graph
@@ -22,7 +22,6 @@ export default function HistoryGraph({ title, subheader, dataFilters, color, ...
 
     const handleChange = (event, newAlignment) => {
       setHistory(newAlignment);
-      console.log("HISTORY", history)
     };
 
     // Fetch from API
@@ -44,17 +43,6 @@ export default function HistoryGraph({ title, subheader, dataFilters, color, ...
             // co2 graph (sen0159)
             if (dataFilters.includes('co2')) {
                 fetchSEN0159Data(Number(history))
-                    .then((data) => {
-                        setData(data);
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
-            }
-
-            // o2 graph (sen0322)
-            if (dataFilters.includes('o2')) {
-                fetchSEN0322Data(Number(history))
                     .then((data) => {
                         setData(data);
                     })
@@ -120,7 +108,6 @@ export default function HistoryGraph({ title, subheader, dataFilters, color, ...
                         },
                     }));
                     setAllData(tmp);
-                    console.log("TEMP", tmp)
                 }
                 if (dataFilters.includes('co2')) {
                     const tmp = info.map((item) => ({
@@ -140,7 +127,6 @@ export default function HistoryGraph({ title, subheader, dataFilters, color, ...
                     }));
                     setAllData(tmp);
                 }
-                console.log("INFO", info)
                 console.log("DATA", allData)
             }
 
@@ -286,8 +272,8 @@ export default function HistoryGraph({ title, subheader, dataFilters, color, ...
               aria-label="Platform"
               sx={{ margin: '25px 100px 0 0' }} // Adjust margin here
             >
-              <ToggleButton value="1">10</ToggleButton>
-              <ToggleButton value="2">30</ToggleButton>
+              <ToggleButton value="10">10</ToggleButton>
+              <ToggleButton value="30">30</ToggleButton>
               <ToggleButton value="0">ALL</ToggleButton>
             </ToggleButtonGroup>
           </Grid>

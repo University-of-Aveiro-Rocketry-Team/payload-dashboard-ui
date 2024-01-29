@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import AppWidgetSummary from './app-widget-summary';
-import { fetchMQ9Latest, fetchBME680Latest, fetchSEN0159Latest, fetchSEN0322Latest } from '../common/api';
+import { fetchMQ9Latest, fetchBME680Latest, fetchSEN0159Latest } from '../common/api';
 
 
 export default function DynamicAppWidget({ title, color, icon, who, ...other }) {
@@ -14,71 +14,55 @@ export default function DynamicAppWidget({ title, color, icon, who, ...other }) 
             if (who === 'co') {
                 fetchMQ9Latest()
                     .then((data) => {
-                        console.log("CO", data);
                         setLatestData(data.co);
                     })
                     .catch((error) => {
-                        console.error(error);
-                    });
-            }
-            else if (who === 'o2') {
-                fetchSEN0322Latest()
-                    .then((data) => {
-                        console.log("O2", data);
-                        setLatestData(data.o2);
-                    })
-                    .catch((error) => {
-                        console.error(error);
+                        console.error("CO", error);
                     });
             }
             else if (who === 'co2') {
                 fetchSEN0159Latest()
                     .then((data) => {
-                        console.log("CO2", data);
                         setLatestData(data.co2);
                     })
                     .catch((error) => {
-                        console.error(error);
+                        console.error("CO2", error);
                     });
             }
             else if (who === 'humidity' ) {
                 fetchBME680Latest()
                     .then((data) => {
-                        console.log("HUMIDITY", data);
                         setLatestData(data.humidity);
                     })
                     .catch((error) => {
-                        console.error(error);
+                        console.error("HUMIDITY", error);
                     });
             }
             else if (who === 'temperature') {
                 fetchBME680Latest()
                     .then((data) => {
-                        console.log("TEMPERATURE", data);
                         setLatestData(data.temperature);
                     })
                     .catch((error) => {
-                        console.error(error);
+                        console.error("TEMPERATURE", error);
                     });
             }
             else if (who === 'gas') {
                 fetchBME680Latest()
                     .then((data) => {
-                        console.log("GAS", data);
                         setLatestData(data.gas);
                     })
                     .catch((error) => {
-                        console.error(error);
+                        console.error("GAS", error);
                     });
             }
             else if (who === 'pressure') {
                 fetchBME680Latest()
                     .then((data) => {
-                        console.log("PRESSURE", data);
                         setLatestData(data.pressure);
                     })
                     .catch((error) => {
-                        console.error(error);
+                        console.error("PRESSURE", error);
                     });
             }
         }, 1000);

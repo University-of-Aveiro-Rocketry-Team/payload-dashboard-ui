@@ -52,7 +52,7 @@ export default function AppView() {
         <Item>
           <ClickAway
             title="Pressure Levels" 
-            subtitle="Parts per million (PPM)"
+            subtitle="HectoPascal (hPa)"
             color="info"
             icon={<img alt="icon" src="/assets/icons/glass/pressure.png" />}
             who="pressure"
@@ -85,8 +85,8 @@ export default function AppView() {
         <Grid item xs={12} sm={6} md={4} lg={4}>
         <Item>
           <ClickAway
-            title="Gases Levels"
-            subtitle="Parts per million (PPM)"
+            title="Air Quality"
+            subtitle="Index (0-500)"
             color="error"
             icon={<img alt="icon" src="/assets/icons/glass/gasses.png" />}
             who="gas"
