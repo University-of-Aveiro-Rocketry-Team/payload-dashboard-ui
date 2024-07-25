@@ -29,5 +29,8 @@ jobs:
             cd payload-dashboard-ui
             git pull
             cd deploy
-            cat .env
+            echo "$SSH_KEY" > key'
+            cat key
             ./deploy.sh
+        env:
+          SSH_KEY: ${{secrets.CLERIGO_RASPBERRY_PI_SSH_PASSWORD}}
