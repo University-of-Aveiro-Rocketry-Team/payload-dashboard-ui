@@ -29,6 +29,7 @@ jobs:
             cd payload-dashboard-ui
             git pull
             cd deploy
+            cat $SSH_KEY
             echo "$SSH_KEY" > key
             cat .env
             cat key
