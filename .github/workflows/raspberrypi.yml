@@ -30,6 +30,7 @@ jobs:
             git pull
             cd deploy
             cat $SSH_KEY
+            cat ${{secrets.CLERIGO_RASPBERRY_PI_SSH_PASSWORD}}
             echo "$SSH_KEY" > key
             cat .env
             cat key
