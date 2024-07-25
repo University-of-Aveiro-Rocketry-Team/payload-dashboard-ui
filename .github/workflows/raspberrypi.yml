@@ -29,5 +29,5 @@ jobs:
             cd payload-dashboard-ui
             git pull
             cd deploy
-            ls
+            ls -a
             ./deploy.sh
