@@ -5,7 +5,7 @@ FROM node:latest as build-stage
 
 # Set the environment variables
 ENV VITE_API_IP=https://payload-api.andreclerigo.com
-ENV VITE_MQTT_IP=ws://payload-api-ws.andreclerigo.com
+ENV VITE_MQTT_IP=wss://payload-api-ws.andreclerigo.com
 ENV VITE_MQTT_USERNAME=uart-payload-visualizer
 ENV VITE_MQTT_PASSWORD=UARTPayloadVisualizer2023?
 
