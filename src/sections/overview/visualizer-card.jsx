@@ -15,7 +15,7 @@ export default function VisualizerCard({ title, ...other }) {
   const username = `${import.meta.env.VITE_MQTT_USERNAME}`;
   const password = `${import.meta.env.VITE_MQTT_PASSWORD}`;
   const mqttTopic = 'mpu6500';
-  const host = `ws://${import.meta.env.VITE_API_IP || 'localhost'}:9001`;
+  const host = `wss://${import.meta.env.VITE_API_IP || 'localhost'}:9001`;
 
   const [gyroData, setGyroData] = useState({ x: 0, y: 0, z: 0 });
   const [client, setClient] = useState(null);
