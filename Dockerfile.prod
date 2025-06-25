@@ -3,15 +3,10 @@
 # Use an official Node runtime as a parent image
 FROM node:latest as build-stage
 
-# Declare build-time environment variables
-ARG VITE_API_IP
-ARG VITE_MQTT_USERNAME
-ARG VITE_MQTT_PASSWORD
-
 # Set the environment variables
-ENV VITE_API_IP=${VITE_API_IP}
-ENV VITE_MQTT_USERNAME=${VITE_MQTT_USERNAME}
-ENV VITE_MQTT_PASSWORD=${VITE_MQTT_PASSWORD}
+ENV VITE_API_IP=payload-api.andreclerigo.com
+ENV VITE_MQTT_USERNAME=uart-payload-visualizer
+ENV VITE_MQTT_PASSWORD=UARTPayloadVisualizer2023?
 
 # Set the working directory in the container
 WORKDIR /app
